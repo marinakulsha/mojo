@@ -21,6 +21,16 @@ defineSupportCode(function ({Given, When, Then}) {
         return PageFactory.currentPage.inputValue(name, title)
     });
 
+    /*Then (/^I should get '(.+)' title$/, funcion(name) {
+        return PageFactory.currentPage.getPageTitle(name)
+    }
+   });*/
+
+    When(/^I scroll the page to '(.+)' element$/, function (name) {
+console. log('scroll')
+        return PageFactory.currentPage.scrolltoElement(name)
+    });
+
 
     Then(/^I should see '(.+)' element on page$/, function (name) {
 

@@ -1,8 +1,9 @@
 let Home = require('./Home'),
-    Checkout = require('./Checkout'),
-    Blog = require('./Blog'),
-    MyAccount = require('./MyAccount');
-
+    FAQ = require('./FAQ'),
+    About = require('./About'),
+    Careers = require('./Careers'),
+    TermsConditions = require('./TermsConditions'),
+    Page404 = require ('./Page404');
 
 let PageFactory = function () {
 
@@ -14,9 +15,11 @@ let PageFactory = function () {
 
         let pages = {
             'home': Home,
-            'checkout': Checkout,
-            'blog': Blog,
-            'myaccount': MyAccount
+            'faq': FAQ,
+            'about': About,
+            'careers': Careers,
+            'terms': TermsConditions,
+            '404': Page404
         };
         if (!pages[page]) {
             throw new Error('Wrong page name: ' + page);
@@ -33,6 +36,6 @@ let mySingleton = {
         return mySingleton.instance
     }
 
-}
+};
 module.exports = mySingleton.getInstance();
 

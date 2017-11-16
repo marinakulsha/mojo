@@ -1,6 +1,7 @@
 let inheritance = require('./../inheritance');
 let Page = require('./page');
-let MyAccount = function (){};
+let Careers = function (){};
+inheritance.inherits(Page,Careers);
 
 
 
@@ -22,6 +23,5 @@ let MyAccount = function (){};
 
 
 
-inheritance.inherits(Page,MyAccount);
 
-module.exports = MyAccount;
+module.exports = Careers;

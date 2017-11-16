@@ -4,15 +4,15 @@ let Page = function () {
 Page.prototype._root = element(by.css('body'));
 
 Page.prototype.data = {};
+
 Page.prototype.url = '';
 
-Page.prototype.goToPage = function(){
+Page.prototype.goToPage = function () {
     return Promise.resolve()
         .then(() => {
             return browser.get(this.url)
         })
-
-}
+};
 
 Page.prototype.waitReady = function (name) {
     let elArray = this.data[name].selector;
@@ -44,16 +44,21 @@ Page.prototype.waitReady = function (name) {
 
 
 Page.prototype.clickButton = function (name) {
-
     return this.waitReady(name)
         .then((elem) => {
             return elem.click();
         })
+};
 
+Page.prototype.getPageTitle = function (name) {
+    return this.waitReady(name)
+        .then((elem) => {
+            return elem.getTitle();
+        })
 };
 
 Page.prototype.inputValue = function (name, text) {
-    let  input;
+    let input;
     return this.waitReady(name)
         .then((elem) => {
             input = elem;
@@ -69,20 +74,47 @@ Page.prototype.pressButton = function (name) {
         .then((elem) => {
             return elem.sendKeys(protractor.Key[name])
         })
-
 };
+
+Page.prototype.scrollIntoView = function (name, alignToTop) {
+    let self = this;
+
+    alignToTop = alignToTop !== undefined ? alignToTop : true;
+    console.log('scrol2');
+    return browser.executeScript('arguments[0].scrollIntoView(arguments[1]);', self.data[name].selector, alignToTop)
+        .then(function () {
+            console.log('scrol3');
+             self.waitReady(name);
+            console.log('scrol4')
+        });
+};
+
+Page.prototype.scrolltoElement = function (name) {
+    console.log('scroll1111');
+    return this.waitReady(name)
+        .then((elem) => {
+            console.log('one');
+            return browser.driver.executeScript("arguments[0].scrollIntoView(false);", elem.getWebElement());
+
+        });
+};
+
+//scrollTo(0,2600)
+
 Page.prototype.elementVisibility = function (name) {
-   let elText = this.data[name].elText;
+    let elText = this.data[name].elText;
     return this.waitReady(name)
         .then(function (elem) {
             if (elText) {
                 return elem.getText();
             }
         }).then((text) => {
-            return {
-                actualText: text,
-                expectedText: elText
-            };
+            if (text) {
+                return {
+                    actualText: text,
+                    expectedText: elText
+                };
+            }
         })
     /* .catch((err) => {
          console.log(err);
@@ -94,8 +126,5 @@ Page.prototype.elementVisibility = function (name) {
                  };
              })
      })*/
-
-}
-
-
+};
 module.exports = Page;

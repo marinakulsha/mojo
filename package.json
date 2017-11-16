@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "install": "node_modules\\.bin\\webdriver-manager update",
+    "update": "node_modules\\.bin\\webdriver-manager update",
     "start": "node_modules\\.bin\\webdriver-manager start",
     "go": "node_modules\\.bin\\protractor test/conf_protractor.js"
   },
@@ -13,11 +13,17 @@
   "dependencies": {
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
-    "chromedriver": "^2.33.1",
-    "cucumber": "^3.0.5",
+    "chromedriver": "^2.33.2",
+    "cucumber": "^3.1.0",
+    "grunt": "^1.0.1",
+    "grunt-protractor-cucumber-html-report": "^0.2.8",
+    "grunt-protractor-runner": "^5.0.0",
+    "grunt-protractor-webdriver": "^0.2.5",
+    "grunt-shell": "^2.1.0",
+    "load-grunt-tasks": "^3.5.2",
     "protractor": "^5.2.0",
-    "protractor-cucumber-framework": "^4.0.9",
-    "chai-smoothie": "^0.3.2"
+    "protractor-cucumber-framework": "^4.1.1",
+    "save": "^2.3.1"
   },
   "devDependencies": {
     "chai-smoothie": "^0.3.2"

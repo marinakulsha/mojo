@@ -1,6 +1,7 @@
 let inheritance = require('./../inheritance');
 let Page = require('./page');
-let Checkout = function (){};
+let FAQ = function (){};
+inheritance.inherits(Page,FAQ);
 
 
 
@@ -22,6 +23,5 @@ let Checkout = function (){};
 
 
 
-inheritance.inherits(Page,Checkout);
 
-module.exports = Checkout;
+module.exports = FAQ;
